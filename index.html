@@ -2,19 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="assets/asciinema-player.css" />
     <title>Integración</title>
   </head>
   <body>
-    <div id="demo" class="col-3"></div>
+    <div id="app" class="col-3">hola</div>
     <script src="assets/asciinema-player.min.js"></script>
   <script>
-    AsciinemaPlayer.create('STORAGE/ascii_windows.cast', document.getElementById('demo'));
+    AsciinemaPlayer.create('STORAGE/ascii_windows.cast', document.getElementById('app'));
   </script>
-
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
