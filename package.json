@@ -1,20 +1,17 @@
 {
-  "name": "integracion_asciinema",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "asciinemawithnodejs",
+  "version": "1.0.0",
+  "description": "proyecto para la integracion de asciinema",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "Rodrigo Glz",
+  "license": "ISC",
   "dependencies": {
     "asciinema-player": "^3.3.0",
     "bootstrap": "^5.2.3",
-    "vue": "^3.2.47"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.1.0",
-    "vite": "^4.3.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
   }
 }
