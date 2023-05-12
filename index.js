@@ -5,8 +5,8 @@ const path = require('path');
 const hostname = 'localhost';
 const port = 3000;
 
-server.use(express.static(path.resolve(__dirname, 'assets')));
-server.use(express.static(path.resolve(__dirname, 'STORAGE')));
+server.use(express.static(path.join(__dirname, 'assets')));
+server.use(express.static(path.join(__dirname, 'STORAGE')));
 
 server.listen( port, hostname, () => {
     console.log(`Server running at https://${hostname}:${port}/`);
