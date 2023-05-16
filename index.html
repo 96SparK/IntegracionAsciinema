@@ -4,13 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/asciinema-player.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Integración</title>
+    <style>
+      #drop-area {
+      border: 5px solid rgb(0, 0, 0);
+      width:  350px;
+      height: 150px;
+      border-style: dotted;
+    }
+    </style>
   </head>
   <body>
-    <div id="demo"></div>
+    <div class="container">
+      <div class="col-12 text-center m-5">
+        <p>Asciinema Video Viewer</p>
+        <input id="url" placeholder="URL of a asciinema file" autofocus="autofocus" disabled>
+        <input id="archivo" type="file" accept=".cast" onchange="dropHandler(event,1)">
+        <div class="row justify-content-center mt-2">
+          <div class="col-4">
+            <p id="drop-area" ondrop="dropHandler(event,0);" ondragover="dragOverHandler(event);"> or drop a local asciinema file here</p>
+          </div>
+        </div>
+      </div>
+      <div id="demo"></div>
+
+    </div>
     <script src="/asciinema-player.min.js"></script>
     <script>
-      AsciinemaPlayer.create('/ascii_windows.cast', document.getElementById('demo'));
+      function dropHandler(event,tipo){
+        document.getElementById('demo').innerHTML = '';
+        event.stopPropagation();
+        event.preventDefault();
+
+        const files = [];
+        var fuente = tipo == 0 ? event.dataTransfer : event.target;
+
+        for (let i = 0; i < fuente.files.length; i++) {
+          if(fuente.files[i].name.includes(".cast")){
+            files.push(fuente.files[i]);
+          }else{
+            fuente.value = '';
+          }
+        }
+        var reader = new FileReader();
+        reader.onloadend = function (e) {
+          AsciinemaPlayer.create('data:text/plain;base64' + e.target.result.split("base64")[1], document.getElementById('demo'),{autoplay: true});
+        }
+        if(files[0]){
+          reader.readAsDataURL(files[0]);
+        }
+      }
+      function dragOverHandler(event){
+        event.stopPropagation();
+        event.preventDefault();
+      }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   </body>
 </html>

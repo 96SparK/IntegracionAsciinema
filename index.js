@@ -9,7 +9,7 @@ server.use(express.static(path.join(__dirname, 'assets')));
 server.use(express.static(path.join(__dirname, 'STORAGE')));
 
 server.listen( port, hostname, () => {
-    console.log(`Server running at https://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 })
 server.get("/", (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname,'index.html'));
